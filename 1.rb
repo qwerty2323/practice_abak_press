@@ -6,8 +6,8 @@
 
 
 def arrays_to_hash(a, b)
-  arr = array_to_numbers(a)
-  arr = array_to_numbers(b, arr)
+  arr = (a << b).flatten
+  arr.delete_if { |i| i.nil?  }
   number = {}
   arr.each do |a|
     if number[a].nil?
@@ -19,18 +19,6 @@ def arrays_to_hash(a, b)
   number
 end
 
-def array_to_numbers(ns, ns_arr = [])
-  ns.each do |n|
-    if !n.nil? && n.is_a?(Fixnum)
-      ns_arr << n
-    elsif !n.nil? && n.is_a?(Array)
-      n.each do |i|
-        ns_arr << i
-      end
-    end
-  end
-  ns_arr
-end
 
 a = [[4, 19], nil, [54, 21], 4, 21]
 b = [234, 0, 21, [54]]
